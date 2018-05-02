@@ -1,0 +1,4 @@
+node_modules
+server/key.js
+server/config/config.json
+
