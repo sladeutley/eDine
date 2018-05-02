@@ -2,12 +2,16 @@
   "name": "eDine",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
     "create-db": "node create-db.js",
     "sass": "node-sass public/sass/ -o public/css/",
     "lint": "eslint --color **/*.js --ignore-pattern node_modules/",
     "dev": "concurrently \"nodemon server.js\" \"rerun-script\""
+  },
+  "watches": {
+    "sass": ["client/sass/*.scss"],
+    "lint": "**/*.js"
   },
   "repository": {
     "type": "git",
