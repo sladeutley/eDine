@@ -4,7 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "create-db": "node create-db.js",
+    "sass": "node-sass public/sass/ -o public/css/",
+    "lint": "eslint --color **/*.js --ignore-pattern node_modules/",
+    "dev": "concurrently \"nodemon server.js\" \"rerun-script\""
   },
   "repository": {
     "type": "git",
