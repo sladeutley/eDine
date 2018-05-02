@@ -5,7 +5,7 @@
   "main": "server.js",
   "scripts": {
     "create-db": "node create-db.js",
-    "sass": "node-sass public/sass/ -o public/css/",
+    "sass": "node-sass client/sass/ -o client/css/",
     "lint": "eslint --color **/*.js --ignore-pattern node_modules/",
     "dev": "concurrently \"nodemon server.js\" \"rerun-script\""
   },
