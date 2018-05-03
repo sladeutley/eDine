@@ -7,7 +7,7 @@ const app = express();
 const session = require("express-session");
 const passport = require('passport');
 const bodyParser = require('body-parser');
-const flase = require('express-flash');
+const flash = require('express-flash');
 
 app.use(express.static(__dirname + "/client"));
 
