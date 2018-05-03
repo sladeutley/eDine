@@ -15,7 +15,7 @@ require('dotenv').config();
 const port = process.env.PORT || 8080
 
 //models
-// app.set("models", require("./server/models"));
+app.set("models", require("./server/models"));
 
 app.set('view engine', 'pug');
 
