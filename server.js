@@ -7,6 +7,7 @@ const app = express();
 const session = require("express-session");
 const passport = require('passport');
 const bodyParser = require('body-parser');
+const flase = require('express-flash');
 
 app.use(express.static(__dirname + "/client"));
 
@@ -42,6 +43,8 @@ app.use((req, res, next) => {
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
+app.use(flash());
+
 app.use(routes);
 
 //server

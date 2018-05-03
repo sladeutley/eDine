@@ -10,7 +10,9 @@
     "dev": "concurrently \"nodemon server.js\" \"rerun-script\""
   },
   "watches": {
-    "sass": ["client/sass/*.scss"],
+    "sass": [
+      "client/sass/*.scss"
+    ],
     "lint": "**/*.js"
   },
   "repository": {
@@ -30,6 +32,7 @@
     "concurrently": "^3.5.1",
     "dotenv": "^5.0.1",
     "express": "^4.16.3",
+    "express-flash": "0.0.2",
     "express-session": "^1.15.6",
     "node-sass": "^4.9.0",
     "passport": "^0.4.0",
