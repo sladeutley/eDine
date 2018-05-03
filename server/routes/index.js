@@ -9,3 +9,5 @@ router.get('/', (req, res, next) => {
 
 // piping other requests through the route module
 router.use(require('./authRoute'));
+
+module.exports = router;

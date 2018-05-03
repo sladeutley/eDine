@@ -9,10 +9,11 @@ const passport = require('passport');
 const bodyParser = require('body-parser');
 const flash = require('express-flash');
 
+// DOES THIS MATTER?? IT SEEMS TO WANT THE VIEWS FOLDER IN THE ROUTE NO MATTER WHAT
 app.use(express.static(__dirname + "/client"));
 
 require('dotenv').config();
-const port = process.env.PORT || 8080
+const port = process.env.PORT || 8080;
 
 //models
 app.set("models", require("./server/models"));

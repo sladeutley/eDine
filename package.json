@@ -4,7 +4,7 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "create-db": "node create-db.js",
+    "create-db": "node build-db.js",
     "sass": "node-sass client/sass/ -o client/css/",
     "lint": "eslint --color **/*.js --ignore-pattern node_modules/",
     "dev": "concurrently \"nodemon server.js\" \"rerun-script\""

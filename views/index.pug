@@ -1,0 +1,18 @@
+html
+  head
+    meta(charset="utf-8")
+    include stylesheets.pug
+    title "edine"
+  body
+
+    include partials/navbar.pug
+    h1 edine
+
+  block content
+    button#showLogin login
+    button#showRegister register
+
+    script    //- temp form
+      //- include ../client/client.js
+
+      //Find out what the block content and temp form are
