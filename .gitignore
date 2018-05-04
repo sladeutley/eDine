@@ -1,4 +1,4 @@
 node_modules
-server/key.js
+server/googlePlacesKey.js
 server/config/config.json
 
