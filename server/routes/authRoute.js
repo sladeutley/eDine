@@ -20,7 +20,7 @@ router.post('/register', register);
 router.get('/login', displayLogin);
 router.post('/login', login);
 
-router.get('/welcome', isLoggedIn);
+router.get('/welcome', isLoggedIn, welcome);
 router.post('/logout', logout);
 
 // We add this to the welcome route as an additional step to take before calling
@@ -30,7 +30,7 @@ router.post('/logout', logout);
 // by passport. Coolness
 // NOTE that we don't need to export this function. Why?
 function isLoggedIn(req, res, next) {
-  if (req.isAuthenticated()) return next();
+  if (req.isAuthenticated()) return next(); //after this next,  we are rendering the welcome page
   res.redirect('/login');
 }
 
