@@ -4,3 +4,12 @@ block content
   h1 search for restaurants
 
   input(type="text" name="restaurant_search" id="restaurant_search")
+  button#searchRestaurants(type="submit") Search Restaurants
+
+  d#out
+  
+  each restaurant in restaurants
+    p #{restaurant.name}
+
+  script   
+      include ../client/restaurant.js
