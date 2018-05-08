@@ -7,8 +7,11 @@ block content
   button#searchRestaurants(type="submit") Search Restaurants
 
   d#out
+
+  //- p #{restaurants.name}
+  //- p #{results}
   
-  each restaurant in restaurants
+  each restaurant in results
     p #{restaurant.name}
 
   script   

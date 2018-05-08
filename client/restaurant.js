@@ -1,5 +1,5 @@
 function geoFindMe() {
-  var output = document.getElementById("out");
+  let output = document.getElementById("out");
 
   if (!navigator.geolocation){
     output.innerHTML = "<p>click on allow to use your location</p>";
@@ -7,12 +7,16 @@ function geoFindMe() {
   }
 
   function success(position) {
-    var latitude  = position.coords.latitude;
-    var longitude = position.coords.longitude;
+    let latitude  = position.coords.latitude;
+    let longitude = position.coords.longitude;
 
-    output.innerHTML = '<p>Latitude is ' + latitude + '° <br>Longitude is ' + longitude + '°</p>';
+    let userInput = document.getElementById("restaurant_search").value;
 
-    // var img = new Image();
+    location.href = `${location.origin}/restaurants?latitude=${latitude}&longitude=${longitude}&keyword=${userInput}`;
+
+    // output.innerHTML = '<p>Latitude is ' + latitude + '° <br>Longitude is ' + longitude + '°</p>';
+
+    // let img = new Image();
     // img.src = "https://maps.googleapis.com/maps/api/staticmap?center=" + latitude + "," + longitude + "&zoom=13&size=300x300&sensor=false";
 
     // output.appendChild(img);
