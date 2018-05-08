@@ -6,4 +6,5 @@ const { searchRestaurantsAPI } = require('../controllers/googlePlacesAPICtrl');
 
 router.get('/restaurants', searchRestaurantsAPI);
 
+
 module.exports = router;

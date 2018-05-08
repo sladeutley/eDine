@@ -1,0 +1,11 @@
+{
+  "reviews": [
+    {
+      "restaurantAPI_id": "ChIJd6biXB1mZIgRWaoyeu57Qjk",
+      "user_id": 1,
+      "review_description": "Velit libero quaerat nobis et ipsam nisi cum quaerat.",
+      "star_rating": 3,
+      "location": "Nashville"
+    }
+  ]
+  }
