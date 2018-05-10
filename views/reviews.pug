@@ -2,6 +2,13 @@ extends index.pug
 
 block content
 
-  h1 #{reviews.review_description}
+  h1 #{googleDetails.result.name}
 
-  h1 ;alskdfjj
+  h2 Reviews
+  each review in reviews
+    h4 #{review.review_description}
+    h6 #{review.User.username}
+    //- h6 #{review.User.userName}
+    //- each user in review.Users
+    //- h6 #{review.`${User.username}`}
+    //- h6 #{review.`User.username`}

@@ -1,4 +1,4 @@
-function geoFindMe() {
+function findUserLocation() {
   let output = document.getElementById("out");
 
   if (!navigator.geolocation){
@@ -31,4 +31,4 @@ function geoFindMe() {
   navigator.geolocation.getCurrentPosition(success, error);
 }
   
-document.getElementById("searchRestaurants").addEventListener("click", geoFindMe);
+document.getElementById("searchRestaurants").addEventListener("click", findUserLocation);
