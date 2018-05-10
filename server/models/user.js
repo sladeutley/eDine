@@ -14,22 +14,20 @@ module.exports = (sequelize, DataTypes) => {
     User.hasMany(models.Review, {
       foreignKey: "user_id"
     });
-    // User.belongsToMany(models.User, {
-    //   though: {
-    //     model: 'userFollow',
-    //     unique: false
-    //   },
-    //   foreignKey: "followerId",
-    //   constraints: false
-    // });
-    // User.belongsToMany(models.User, {
-    //   though: {
-    //     model: 'userFollow',
-    //     unique: false
-    //   },
-    //   foreignKey: "followeeId",
-    //   constraints: false
-    // });
+    User.belongsToMany(models.User, {
+      through: "userFollow",
+      as: "userFollows",
+      foreignKey: "followerId",
+      onDelete: "CASCADE", //might not need this
+      constraints: false
+    });
+    User.belongsToMany(models.User, {
+      through: "userFollow",
+      as: "userFollowed",      
+      foreignKey: "followeeId",
+      onDelete: "CASCADE",       
+      constraints: false
+    });
   };
   return User;
 };
