@@ -7,19 +7,11 @@ block content
   button#searchRestaurants(type="submit") Search Restaurants
 
   d#out
-
-  //- p #{restaurants.name}
-  //- p #{results}
   
   each restaurant in results
     ul
       h3
         a(href=(`/reviews/${restaurant.place_id}`)) #{restaurant.name}: #{restaurant.vicinity}
-        //- a(href=(`/reviews`)) #{restaurant.name}: #{restaurant.vicinity}
-        //- a(href=(`/restaurants/${restaurant.name}`)) 
-    //- p.
-    //-   #{restaurant.name}
-    //-   #{restaurant.vicinity}
 
   script   
       include ../client/restaurant.js

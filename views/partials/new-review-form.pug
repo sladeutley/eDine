@@ -1,0 +1,19 @@
+form#reviewNew(name="reviewNew" action=`/reviews/${id}` method="post")
+    label(for="review_description") Description
+    input(type="text" placeholder="review description" name="review_description")
+    br
+    br
+    label(for="location") location
+    input(type="text" placeholder="location" name="location")
+    br
+    br
+    label(for="star_rating") star Rating
+    select(name="star_rating")
+      option(value="1") 1
+      option(value="2") 2
+      option(value="3") 3
+      option(value="4") 4
+      option(value="5") 5
+    br
+    br
+    button#submit(type="submit" value="Submit") Submit

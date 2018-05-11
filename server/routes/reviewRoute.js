@@ -2,11 +2,11 @@
 
 const { Router } = require('express');
 const router = Router();
-const { displayReviews } = require('../controllers/reviewCtrl');
+const { displayReviews, displayReviewForm, postReview } = require('../controllers/reviewCtrl');
 const { getRestaurantDetails } = require('../controllers/googlePlacesAPICtrl');
 
-// router.get('/reviews/:id', displayReviews);
 router.get('/reviews/:id', getRestaurantDetails, displayReviews);
-// router.get('/reviews/:id', displayReviews, getRestaurantDetails);
+router.get('/new-review/:id', displayReviewForm);
+router.post('/reviews/:id', postReview);
 
 module.exports = router;

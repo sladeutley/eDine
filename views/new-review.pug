@@ -1,0 +1,15 @@
+extends welcome.pug
+//- // WHAT DOES extends DO?
+
+block content
+  h1 Add Review!
+  if message
+    h2= message
+  include partials/new-review-form.pug
+
+  //- script(src="https://code.jquery.com/jquery-3.2.1.min.js"
+  //-               integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+  //-               crossorigin="anonymous") 
+
+  //- script   
+  //-     include ../client/review.js

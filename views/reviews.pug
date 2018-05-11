@@ -4,11 +4,17 @@ block content
 
   h1 #{googleDetails.result.name}
 
+  form#reviewNew(name="addReview" action=`/new-review/${id}` method="get")
+    button Add a Review
+
   h2 Reviews
   each review in reviews
     h4 #{review.review_description}
     h6 #{review.User.username}
-    //- h6 #{review.User.userName}
-    //- each user in review.Users
-    //- h6 #{review.`${User.username}`}
-    //- h6 #{review.`User.username`}
+
+  //- script(src="https://code.jquery.com/jquery-3.2.1.min.js"
+  //-             integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+  //-             crossorigin="anonymous")            
+  //- script
+  //-   include ../client/review.js
+

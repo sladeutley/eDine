@@ -1,4 +1,5 @@
 "use strict";
+
 module.exports = (sequelize, DataTypes) => {
   var Review = sequelize.define(
     "Review",
@@ -18,3 +19,4 @@ module.exports = (sequelize, DataTypes) => {
   };
   return Review;
 };
+
