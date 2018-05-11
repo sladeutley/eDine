@@ -74,7 +74,7 @@ module.exports.login = (req, res, next) => {
 };
 
 module.exports.welcome = (req, res, next) => {
-  res.render('welcome');
+  next();
 };
 
 // logging out

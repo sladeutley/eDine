@@ -12,6 +12,9 @@ const {
   logout
 } = require('../controllers/authCtrl.js');
 
+const { getReviewsForWelcomePage } = require('../controllers/reviewCtrl');
+const { getRestaurantDetails } = require('../controllers/googlePlacesAPICtrl');
+
 // new users
 router.get('/register', displayRegister);
 router.post('/register', register);
@@ -20,7 +23,7 @@ router.post('/register', register);
 router.get('/login', displayLogin);
 router.post('/login', login);
 
-router.get('/welcome', isLoggedIn, welcome);
+router.get('/welcome', isLoggedIn, welcome, getReviewsForWelcomePage);
 router.post('/logout', logout);
 
 // We add this to the welcome route as an additional step to take before calling
