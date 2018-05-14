@@ -53,7 +53,7 @@ module.exports.getRestaurantDetails = (req, res, next) => {
 
         resp.on("end", () => {
           
-          req.details =   JSON.parse(data);
+          req.details = JSON.parse(data);
           // need next bc can only render once
           next();
         });
@@ -64,6 +64,35 @@ module.exports.getRestaurantDetails = (req, res, next) => {
       console.log("Error: " + err.message);
     });
 };
+
+// module.exports.getRestaurantDetailsByAPI_id = (req, res, next) => {
+//   console.log("req.params.id", req.params.id);
+
+//   https
+//     .get(
+//       `https://maps.googleapis.com/maps/api/place/details/json?placeid=${
+//         restaurantAPI_id
+//       }&key=${googlePlacesKey}`,
+//       resp => {
+//         let data = ""; // some of the data has been recieved.
+
+//         resp.on("data", chunk => {
+//           data += chunk;
+//         }); // The whole response has been received
+
+//         resp.on("end", () => {
+          
+//           req.details = JSON.parse(data);
+//           // need next bc can only render once
+//           next();
+//         });
+//         // console.log('resp',resp);
+//       }
+//     )
+//     .on("error", err => {
+//       console.log("Error: " + err.message);
+//     });
+// };
 
 module.exports.displayRestaurantSearch = (req, res, next) => {
   res.render("restaurants", resp); //eventually, need to put object after render path
