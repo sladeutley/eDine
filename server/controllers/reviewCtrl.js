@@ -10,9 +10,6 @@ const https = require("https");
 module.exports.getReviewsForWelcomePage = (req, res, next) => {
   const { Review, User } = req.app.get("models");
 
-  // Review.findAll({
-  //   where: { id: 20 }
-  // })
   Review.findAll({
     include: [
       {
@@ -21,10 +18,9 @@ module.exports.getReviewsForWelcomePage = (req, res, next) => {
     ]
   }).then(reviews => {
     let recentReviews = reviews.slice(reviews.length - 2);
-    // console.log('reviews',reviews);
     let promiseArr = [];
-    // return new Promise((resolve, reject) => {
     recentReviews.forEach(review => {
+      // must push each resolve (from a promise) into the promise all (promiseArr) array
       promiseArr.push(
         new Promise((resolve, reject) => {
           https
@@ -44,12 +40,8 @@ module.exports.getReviewsForWelcomePage = (req, res, next) => {
                   // NEED 'dataValues' bc every object's properties is nested in dataValues originally. JSON.parse makes dataValues go away
                   review.dataValues.details = JSON.parse(data);
                   resolve(review);
-                  // promiseArr.push(review);
-
-                  // need next bc can only render once
-                  // next();
                 });
-                // console.log('resp',resp);
+
               }
             )
             .on("error", err => {
@@ -59,29 +51,14 @@ module.exports.getReviewsForWelcomePage = (req, res, next) => {
       );
     });
     Promise.all(promiseArr).then(data => {
-      // res.json(data);
-      console.log('data[0]',data[0]);
       res.render("welcome", { data } )
+    })
+    .catch(err => {
+      console.log("oopsies, something went wrong!", err);
+      res.status(500).json({ error: err });
     });
   });
 };
-
-//       // .then(recentReview => {
-//         // res.json(review);
-//         // res.render("welcome", {
-//         //   recentReviews: recentReviews,
-//         //   // googleDetails: req.details,
-//         //   // id: req.params.id
-//         // });
-//         // res.render("welcome", { recentReviews } );
-//       // });
-
-//       // res.render("welcome", { recentReviews });
-//     })
-//     .catch(err => {
-//       console.log("Something went wrong!", err);
-//       res.status(500).json({ error: err });
-//     });
 
 // get reviews based on restaurants' google api id
 
