@@ -19,13 +19,14 @@ module.exports.getReviewsForWelcomePage = (req, res, next) => {
         model: User
       }
     ]
-  })
-
-    .then(reviews => {
-      let recentReviews = reviews.slice(reviews.length - 1);
-      // console.log('reviews',reviews);
-      return new Promise((resolve, reject) => {
-        recentReviews.forEach(review => {
+  }).then(reviews => {
+    let recentReviews = reviews.slice(reviews.length - 2);
+    // console.log('reviews',reviews);
+    let promiseArr = [];
+    // return new Promise((resolve, reject) => {
+    recentReviews.forEach(review => {
+      promiseArr.push(
+        new Promise((resolve, reject) => {
           https
             .get(
               `https://maps.googleapis.com/maps/api/place/details/json?placeid=${
@@ -40,10 +41,10 @@ module.exports.getReviewsForWelcomePage = (req, res, next) => {
 
                 resp.on("end", () => {
                   console.log("JSON.parse(data)", JSON.parse(data));
-                  // review.dataValues.details = "helllllo";
                   // NEED 'dataValues' bc every object's properties is nested in dataValues originally. JSON.parse makes dataValues go away
                   review.dataValues.details = JSON.parse(data);
                   resolve(review);
+                  // promiseArr.push(review);
 
                   // need next bc can only render once
                   // next();
@@ -54,24 +55,34 @@ module.exports.getReviewsForWelcomePage = (req, res, next) => {
             .on("error", err => {
               console.log("Error: " + err.message);
             });
-        });
-      }).then(recentReviews => {
-        // res.json(recentReviews);
-        // res.render("welcome", {
-        //   recentReviews: recentReviews,
-        //   // googleDetails: req.details,
-        //   // id: req.params.id
-        // });
-        res.render("welcome", { recentReviews } )
-      });
-
-      // res.render("welcome", { recentReviews });
-    })
-    .catch(err => {
-      console.log("Something went wrong!", err);
-      res.status(500).json({ error: err });
+        })
+      );
     });
+    Promise.all(promiseArr).then(data => {
+      // res.json(data);
+      console.log('data[0]',data[0]);
+      res.render("welcome", { data } )
+    });
+  });
 };
+
+//       // .then(recentReview => {
+//         // res.json(review);
+//         // res.render("welcome", {
+//         //   recentReviews: recentReviews,
+//         //   // googleDetails: req.details,
+//         //   // id: req.params.id
+//         // });
+//         // res.render("welcome", { recentReviews } );
+//       // });
+
+//       // res.render("welcome", { recentReviews });
+//     })
+//     .catch(err => {
+//       console.log("Something went wrong!", err);
+//       res.status(500).json({ error: err });
+//     });
+
 // get reviews based on restaurants' google api id
 
 module.exports.displayReviews = (req, res, next) => {

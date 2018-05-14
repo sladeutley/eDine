@@ -3,8 +3,9 @@ extends index.pug
 block content
   h1 Welcome to edine!
 
-
-  //- h1 #{recentReviews.details.result.name}   
-  p.
-    #{recentReviews.review_description}
-
+  each review in data
+    h1 #{review.dataValues.details.result.name}   
+    p.
+      #{review.review_description}
+      by #{review.User.username}
+  //- h2 #{data.dataValues.details.result.name}
