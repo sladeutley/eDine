@@ -3,9 +3,23 @@ extends index.pug
 block content
   h1 Welcome to edine!
 
+  h2 #{loggedInUserId}
   each review in data
     h1 #{review.dataValues.details.result.name}   
     p.
       #{review.review_description}
       by #{review.User.username}
-  //- h2 #{data.dataValues.details.result.name}
+
+    form#userFollow(name="addReview" action=`/follow-user/${review.User.id}` method="post")
+          button follow
+      
+    //- each rev in review.dataValues.User.userFollowed
+    //-   if ((rev.userFollow.followeeId === review.User.id) && (rev.userFollow.followerId === loggedInUserId))
+    //-     button(disabled) following
+    //-   else
+    //-     form#userFollow(name="addReview" action=`/follow-user/${review.User.id}` method="post")
+    //-       button follow
+
+//- // ****TO-DO:  need to get info from userFollow join table, so can do an if statement in pug to not display the follow button if the followeeId already exists, and the logged in users id is the same as the followerId on the join table
+
+//- eventually instead of disabled button, do a unfollow button

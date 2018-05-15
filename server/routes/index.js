@@ -10,6 +10,7 @@ router.get("/", (req, res, next) => {
 // piping other requests through the route module
 router.use(require("./authRoute"));
 router.use(require("./googlePlacesAPIRoute"));
-router.use(require("./reviewRoute"))
+router.use(require("./reviewRoute"));
+router.use(require("./userRoute"));
 
 module.exports = router;

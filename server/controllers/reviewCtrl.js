@@ -8,18 +8,30 @@ const https = require("https");
 // get last 20 reviews for welcome page based on your area
 
 module.exports.getReviewsForWelcomePage = (req, res, next) => {
-  const { Review, User } = req.app.get("models");
+  const { Review, User, userFollow } = req.app.get("models");
 
   Review.findAll({
+    // look for sequelize options for order by and limit (instead of slice thing)
+    // where: 
+    limit: 20,
+    order: [['updatedAt', 'DESC']],
     include: [
       {
-        model: User
-      }
+        model: User, 
+        // need to get info from userFollow join table, so can do an if statement in pug to not display the follow button if the followeeId already exists, and the logged in users id is the same as the followerId on the join table
+        include: [
+          {
+            model: User,
+            as: "userFollowed"
+            // where: {followerId: req.user.id}
+          }
+        ]
+      },
+
     ]
   }).then(reviews => {
-    let recentReviews = reviews.slice(reviews.length - 2);
     let promiseArr = [];
-    recentReviews.forEach(review => {
+    reviews.forEach(review => {
       // must push each resolve (from a promise) into the promise all (promiseArr) array
       promiseArr.push(
         new Promise((resolve, reject) => {
@@ -36,9 +48,11 @@ module.exports.getReviewsForWelcomePage = (req, res, next) => {
                 }); // The whole response has been received
 
                 resp.on("end", () => {
-                  console.log("JSON.parse(data)", JSON.parse(data));
+                  // console.log("JSON.parse(data)", JSON.parse(data));
                   // NEED 'dataValues' bc every object's properties is nested in dataValues originally. JSON.parse makes dataValues go away
                   review.dataValues.details = JSON.parse(data);
+
+                  // review.dataValues.loggedInUserId = req.user.id;
                   resolve(review);
                 });
 
@@ -51,7 +65,12 @@ module.exports.getReviewsForWelcomePage = (req, res, next) => {
       );
     });
     Promise.all(promiseArr).then(data => {
-      res.render("welcome", { data } )
+      // data.dataValues.loggedInUserId = req.user.id;
+      console.log('data',data);
+      // res.json(data);
+      console.log('req.user.id',req.user.id);
+      // res.render("welcome", { data } );
+      res.render("welcome", { data: data, loggedInUserId: req.user.id } );      
     })
     .catch(err => {
       console.log("oopsies, something went wrong!", err);

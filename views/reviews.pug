@@ -4,12 +4,13 @@ block content
 
   h1 #{googleDetails.result.name}
 
-  form#reviewNew(name="addReview" action=`/new-review/${id}?name=${googleDetails.result.name}` method="get")
+  form#reviewNew(name="addReview" action=`/new-review/${id}` method="get")
     button Add a Review
 
   h2 Reviews
   each review in reviews
     h4 #{review.review_description}
-    h6 #{review.User.username}
+    h6 by #{review.User.username}
+  include partials/follow-user.pug
 
 
