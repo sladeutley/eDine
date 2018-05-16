@@ -3,9 +3,10 @@
 const { Router } = require('express');
 const router = Router();
 
-const { followUser, displayUsersPage, displayPeopleUserFollowsReviews, displayAllUsers } = require('../controllers/userCtrl');
+const { followUser, displayUsersPage, displayLoggedInUsersProfilePage, displayPeopleUserFollowsReviews, displayAllUsers } = require('../controllers/userCtrl');
 
 router.post(`/follow-user/:id`, followUser);
+router.get('/user', isLoggedIn, displayLoggedInUsersProfilePage);
 router.get('/user/:id', displayUsersPage);
 router.get('/followees-reviews', isLoggedIn, displayPeopleUserFollowsReviews);
 router.get('/all-users', displayAllUsers)

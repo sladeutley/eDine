@@ -104,6 +104,10 @@ module.exports.displayUsersPage = (req, res, next) => {
   });
 };
 
+module.exports.displayLoggedInUsersProfilePage = (req, res, next) => {
+  res.redirect(`user/${req.user.id}`);
+}
+
 module.exports.displayPeopleUserFollowsReviews = (req, res, next) => {
   let { sequelize } = req.app.get("models");
 

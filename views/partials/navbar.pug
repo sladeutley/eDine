@@ -21,3 +21,10 @@ nav#nav-bar
   
   h3 
     a(class='user-profile' href='/user') My Profile
+
+  h5
+    if session.passport
+      span logged in as: #{session.passport.user.username}
+      form(method="POST")
+        <br>
+          button(type="submit" formaction="/logout") logout
