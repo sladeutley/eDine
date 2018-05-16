@@ -87,7 +87,7 @@ module.exports.displayUsersPage = (req, res, next) => {
       .then(data => {
         // data.dataValues.loggedInUserId = req.user.id;
         console.log("data", data);
-        console.log('userName',userName);
+        console.log("userName", userName);
         // res.json(data);
         // console.log("req.user.id", req.user.id);
         // res.render("welcome", { data } );
@@ -106,7 +106,29 @@ module.exports.displayUsersPage = (req, res, next) => {
 
 module.exports.displayLoggedInUsersProfilePage = (req, res, next) => {
   res.redirect(`user/${req.user.id}`);
-}
+};
+
+module.exports.displayPeopleUserFollows = (req, res, next) => {
+  let { sequelize } = req.app.get("models");
+
+  sequelize
+    .query(
+      `
+  select * from users, "userFollows"
+  where "userFollows"."followerId"=${req.user.id}
+  and users.id="userFollows"."followeeId"
+  `
+    )
+    .then(foodBuddies => {
+      // res.json(foodBuddies[0]);
+      let followees = foodBuddies[0];
+      res.render("followees", {followees} )
+    })
+    .catch(err => {
+      console.log("oopsies, something went wrong!", err);
+      res.status(500).json({ error: err });
+    });
+};
 
 module.exports.displayPeopleUserFollowsReviews = (req, res, next) => {
   let { sequelize } = req.app.get("models");
