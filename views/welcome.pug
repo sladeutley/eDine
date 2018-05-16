@@ -3,7 +3,6 @@ extends index.pug
 block content
   h1 Welcome to edine!
 
-  h2 #{loggedInUserId}
   each review in data
     h1 #{review.dataValues.details.result.name}   
     p.
