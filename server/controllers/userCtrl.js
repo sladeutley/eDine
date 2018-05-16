@@ -37,15 +37,71 @@ module.exports.displayUsersPage = (req, res, next) => {
         }
       }
     ]
-  })
-    .then(userPage => {
-      res.json(userPage);
-      // res.render("user", { userPage } );
-    })
-    .catch(err => {
-      console.log("oops!", err);
-      res.status(500).json({ error: err });
+  }).then(userPage => {
+    // res.json(userPage);
+    let userName = userPage[0].username;
+    // console.log('userName',userName);
+    // res.json(userPage[0]);
+    // console.log('userPage[0].dataValues',userPage[0].dataValues);
+    // console.log("userPage", userPage);
+    // console.log('userPage[0].User',userPage[0].User);
+    // console.log('userPage.Reviews',userPage.Reviews);
+    // console.log('userPage.User.Reviews',userPage.User.Reviews);
+    // console.log('userPage.dataValues.Reviews',userPage.dataValues.Reviews);
+    // console.log('userPage.dataValues',userPage.User.dataValues);
+    // res.render("user", { userPage } );
+    let promiseArr = [];
+    userPage[0].Reviews.forEach(review => {
+      // must push each resolve (from a promise) into the promise all (promiseArr) array
+      promiseArr.push(
+        new Promise((resolve, reject) => {
+          https
+            .get(
+              `https://maps.googleapis.com/maps/api/place/details/json?placeid=${
+                review.restaurantAPI_id
+              }&key=${googlePlacesKey}`,
+              resp => {
+                let data = ""; // some of the data has been recieved.
+
+                resp.on("data", chunk => {
+                  data += chunk;
+                }); // The whole response has been received
+
+                resp.on("end", () => {
+                  // console.log("JSON.parse(data)", JSON.parse(data));
+                  // NEED 'dataValues' bc every object's properties is nested in dataValues originally. JSON.parse makes dataValues go away
+                  review.dataValues.details = JSON.parse(data);
+
+                  // review.dataValues.loggedInUserId = req.user.id;
+                  resolve(review);
+                });
+              }
+            )
+            .on("error", err => {
+              console.log("Error: " + err.message);
+            });
+        })
+      );
     });
+    Promise.all(promiseArr)
+      .then(data => {
+        // data.dataValues.loggedInUserId = req.user.id;
+        console.log("data", data);
+        console.log('userName',userName);
+        // res.json(data);
+        // console.log("req.user.id", req.user.id);
+        // res.render("welcome", { data } );
+        res.render("user", {
+          data: data,
+          // loggedInUserId: req.user.id,
+          userName: userName
+        });
+      })
+      .catch(err => {
+        console.log("oopsies, something went wrong!", err);
+        res.status(500).json({ error: err });
+      });
+  });
 };
 
 module.exports.displayPeopleUserFollowsReviews = (req, res, next) => {
@@ -119,6 +175,6 @@ module.exports.displayAllUsers = (req, res, next) => {
 
   User.findAll().then(users => {
     // res.json(users);
-    res.render('all-users', { users })
+    res.render("all-users", { users });
   });
 };

@@ -2,10 +2,12 @@ extends welcome.pug
 
 block content
 
-  h1 User page
-  each user in userPage
-    h3 #{user.username}
+  h1 #{userName}'s Page
+  
+  each review in data
+    h1 #{review.dataValues.details.result.name}   
+    p.
+      #{review.review_description}
 
-  h1 My Reviews
 
-  h1 My Food Buddies Reviews
+  //- h1 My Food Buddies Reviews
