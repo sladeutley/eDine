@@ -1,0 +1,12 @@
+extends index.pug
+
+block content
+
+  each review in data
+    h1 #{review.result.name}   
+    p.
+      #{review.review_description}
+      by #{review.username}
+
+    form#userFollow(name="addReview" action=`/follow-user/${review.user_id}` method="post")
+          button follow
