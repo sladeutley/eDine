@@ -24,7 +24,7 @@ nav#nav-bar
 
   h5
     if session.passport
-      span logged in as: #{session.passport.user.username}
+      //- span logged in as: #{session.passport.user.username}
       form(method="POST")
         <br>
           button(type="submit" formaction="/logout") logout

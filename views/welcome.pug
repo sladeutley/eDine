@@ -1,16 +1,25 @@
 extends index.pug
 
 block content
-  h1 Welcome to edine!
+  h1 Welcome to edine, #{session.passport.user.username}!
 
-  each review in data
-    h1 #{review.dataValues.details.result.name}   
-    p.
-      #{review.review_description}
-      by #{review.User.username}
+  .review-container 
+    each review in data
+      .review-card 
+        h2 
+          a(href=(`/reviews/${review.restaurantAPI_id}`)) #{review.dataValues.details.result.name}   
+          if (review.dataValues.details.restaurantImage)
+            img(src=`${review.dataValues.details.restaurantImage}` alt="restaurant image")
+          else
+            img(src="../client/img/no_image_available.jpg")
+        p.
+          #{review.review_description} <br><br>
+          #{review.dataValues.details.result.formatted_address} <br><br>
+        p
+          a(href=(`/user/${review.user_id}`)) written by: #{review.User.username}
 
-    form#userFollow(name="addReview" action=`/follow-user/${review.User.id}` method="post")
-          button follow
+        form#userFollow(name="addReview" action=`/follow-user/${review.User.id}` method="post")
+              button follow this user
       
     //- each rev in review.dataValues.User.userFollowed
     //-   if ((rev.userFollow.followeeId === review.User.id) && (rev.userFollow.followerId === loggedInUserId))
