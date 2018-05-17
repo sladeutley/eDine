@@ -9,11 +9,52 @@
 }
 
 #nav-bar {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: repeat(6,1fr);
+  grid-template-rows: 120px;
   color: white;
   background-color: rgb(126, 53, 77);
+}
+#nav-bar h1 {
+  // grid-row: 1; // puts it on first row
+  grid-column: 1; //extends it all the way throught the columns
+  // align-a: center;
+  font-family: "Futura";
+  font-size: 2rem;
+  text-shadow: 4px 2px #bada55,
+                5px 3px black
+}
+
+#nav-bar ul {
+  display: grid;
+  grid-template-columns: repeat(8,1fr);
+  padding: none;
+  grid-column: 2/7;
+  list-style-type: none;
+}
+
+#nav-bar li {
+  margin: 5px 10px;
+  // border: 1px black solid;
+  border-radius: 50%;
+}
+
+#nav-bar a {
+  font-family: "Futura";
+  text-decoration: none;
+  color: whitesmoke;
+}
+
+.logoutBtn {
+  grid-column: 7;
+  height: 50%;
+  width: 40px;
+  background: none;
+  font-family: "Futura";
+  text-decoration: none;
+  color: whitesmoke;
+  border: none;
+  cursor: pointer;
 }
 
 .review-container {
