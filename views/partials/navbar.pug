@@ -9,20 +9,21 @@ nav#nav-bar
       a(class='restaurantSearch' href='/restaurants') Search Restaurants
 
     li 
-      a(class='user search' href='/all-users') Find Food Buddies!
-
-    li 
       a(class='write review' href='/restaurants') Write a Review
 
     li 
-      a(class='followees' href='/followees-reviews') See Food Buddies' Reviews
-    
+      a(class='user search' href='/all-users') Find Food Buddies!
+
     li 
       a(class='my-food-buddies' href='/followees') See My Food Buddies!
     
     li 
+      a(class='followees' href='/followees-reviews') See Food Buddies' Reviews
+    
+    li
+    
+    li 
       a(class='user-profile' href='/user') My Profile
-
 
     li
       if session.passport

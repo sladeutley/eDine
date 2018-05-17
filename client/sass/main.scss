@@ -10,7 +10,7 @@
 
 #nav-bar {
   display: grid;
-  grid-template-columns: repeat(6,1fr);
+  grid-template-columns: repeat(6, 1fr);
   grid-template-rows: 120px;
   color: white;
   background-color: rgb(126, 53, 77);
@@ -21,20 +21,21 @@
   // align-a: center;
   font-family: "Futura";
   font-size: 2rem;
-  text-shadow: 4px 2px #bada55,
-                5px 3px black
+  text-shadow: 4px 2px #bada55, 5px 3px black;
+  margin-left: 1rem;
+  
 }
 
 #nav-bar ul {
   display: grid;
-  grid-template-columns: repeat(8,1fr);
+  grid-template-columns: repeat(8, 1fr);
   padding: none;
   grid-column: 2/7;
   list-style-type: none;
 }
 
 #nav-bar li {
-  margin: 5px 10px;
+  margin: 2px 8px;
   // border: 1px black solid;
   border-radius: 50%;
 }
@@ -46,6 +47,7 @@
 }
 
 .logoutBtn {
+  font-size: 18px;
   grid-column: 7;
   height: 50%;
   width: 40px;
@@ -55,6 +57,7 @@
   color: whitesmoke;
   border: none;
   cursor: pointer;
+  margin-right: -200px;
 }
 
 .review-container {
@@ -62,6 +65,10 @@
   flex-flow: row wrap;
   justify-content: space-evenly;
   padding: 5px;
+}
+
+a {
+  color: blue;
 }
 
 .review-card {
@@ -75,9 +82,43 @@
   position: relative;
   @include box-shadow(2px, 7px, 20px, -1px);
 
+  a {
+    text-decoration: none;
+  }
+
+  // h2 {
+  //   color: blue;
+  // }
+
   img {
     // max-width: 300px;
     height: 175px;
     width: 100%;
+  }
+
+  .buttons {
+    background-color: #bada55;
+    cursor: pointer;
+    display: inline-block;
+    padding: 0.5em 0.9em;
+    // position: relative;
+    // bottom: 8px;
+    // right: 30px;
+    top: 1.5%;
+    left: 75%;
+    border: 0.16em solid rgba(255, 255, 255, 1);
+    border-radius: 0.3em;
+    box-sizing: border-box;
+    text-decoration: none;
+    font-family: "Roboto", sans-serif;
+    font-weight: 300;
+    color: #ffffff;
+    @include text-shadow(0.04em);
+    text-align: center;
+    transition: all 0.2s;
+
+    &:hover {
+      border-color: rebeccapurple;
+    }
   }
 }

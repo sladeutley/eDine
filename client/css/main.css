@@ -9,7 +9,8 @@
   grid-column: 1;
   font-family: "Futura";
   font-size: 2rem;
-  text-shadow: 4px 2px #bada55, 5px 3px black; }
+  text-shadow: 4px 2px #bada55, 5px 3px black;
+  margin-left: 1rem; }
 
 #nav-bar ul {
   display: grid;
@@ -19,7 +20,7 @@
   list-style-type: none; }
 
 #nav-bar li {
-  margin: 5px 10px;
+  margin: 2px 8px;
   border-radius: 50%; }
 
 #nav-bar a {
@@ -28,6 +29,7 @@
   color: whitesmoke; }
 
 .logoutBtn {
+  font-size: 18px;
   grid-column: 7;
   height: 50%;
   width: 40px;
@@ -36,13 +38,17 @@
   text-decoration: none;
   color: whitesmoke;
   border: none;
-  cursor: pointer; }
+  cursor: pointer;
+  margin-right: -200px; }
 
 .review-container {
   display: flex;
   flex-flow: row wrap;
   justify-content: space-evenly;
   padding: 5px; }
+
+a {
+  color: blue; }
 
 .review-card {
   cursor: pointer;
@@ -56,6 +62,27 @@
   -webkit-box-shadow: 2px 7px 20px -1px rgba(0, 0, 0, 0.61);
   -moz-box-shadow: 2px 7px 20px -1px rgba(0, 0, 0, 0.61);
   box-shadow: 2px 7px 20px -1px rgba(0, 0, 0, 0.61); }
+  .review-card a {
+    text-decoration: none; }
   .review-card img {
     height: 175px;
     width: 100%; }
+  .review-card .buttons {
+    background-color: #bada55;
+    cursor: pointer;
+    display: inline-block;
+    padding: 0.5em 0.9em;
+    top: 1.5%;
+    left: 75%;
+    border: 0.16em solid white;
+    border-radius: 0.3em;
+    box-sizing: border-box;
+    text-decoration: none;
+    font-family: "Roboto", sans-serif;
+    font-weight: 300;
+    color: #ffffff;
+    text-shadow: 0 0.04em 0.04em rgba(0, 0, 0, 0.85);
+    text-align: center;
+    transition: all 0.2s; }
+    .review-card .buttons:hover {
+      border-color: rebeccapurple; }
