@@ -5,7 +5,7 @@ block content
   h1 #{googleDetails.result.name}
 
   form#reviewNew(name="addReview" action=`/new-review/${id}` method="get")
-    button.buttons Add a Review
+    button.abuttons Add a Review
 
   h2 Reviews
   .review-container
@@ -20,7 +20,7 @@ block content
           #{review.review_description}
 
         form#userFollow(name="addReview" action=`/follow-user/${review.User.id}` method="post")
-          button follow this user
+          button.abuttons follow this user
 
 
 

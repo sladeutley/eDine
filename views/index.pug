@@ -6,11 +6,12 @@ html
   body
 
     include partials/navbar.pug
+    //- d.transition-div
 
   block content
     <br>
-    button#goToLogin login
-    button#goToRegister register
+    button.abuttons#goToLogin login
+    button.abuttons#goToRegister register
 
     script   
       include ../client/home.js

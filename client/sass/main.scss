@@ -8,7 +8,26 @@
   text-shadow: 0 $ems $ems rgba(0, 0, 0, 0.85);
 }
 
+body {
+  // background-color: #f4f4f4;
+  background-color: rgb(250, 250, 250);
+  // background-color: green;
+}
+
+// .transition-div {
+//   background-color: white;
+//   border: 1px solid whitesmoke;
+//   position: absolute;
+//   height: 5%;
+//   width: 100%;
+//   margin-left: -10px;
+// }
+
 #nav-bar {
+  // width: 100%;
+  margin-left: -15px;
+  margin-top: -10px;
+  margin-right: -10px;
   display: grid;
   grid-template-columns: repeat(6, 1fr);
   grid-template-rows: 120px;
@@ -58,6 +77,7 @@
   border: none;
   cursor: pointer;
   margin-right: -200px;
+  margin-top: -12px;
 }
 
 .review-container {
@@ -73,6 +93,7 @@ a {
 
 .review-card {
   cursor: pointer;
+  background-color: white;
   flex-basis: 30%;
   text-align: left;
   margin: 10px 0;
@@ -120,5 +141,31 @@ a {
     &:hover {
       border-color: rebeccapurple;
     }
+  }
+}
+
+.abuttons {
+  background-color: #bada55;
+  cursor: pointer;
+  display: inline-block;
+  padding: 0.5em 0.9em;
+  // position: relative;
+  // bottom: 8px;
+  // right: 30px;
+  top: 1.5%;
+  left: 75%;
+  border: 0.16em solid rgba(255, 255, 255, 1);
+  border-radius: 0.3em;
+  box-sizing: border-box;
+  text-decoration: none;
+  font-family: "Roboto", sans-serif;
+  font-weight: 300;
+  color: #ffffff;
+  @include text-shadow(0.04em);
+  text-align: center;
+  transition: all 0.2s;
+
+  &:hover {
+    border-color: rebeccapurple;
   }
 }

@@ -147,7 +147,7 @@ module.exports.displayPeopleUserFollowsReviews = (req, res, next) => {
   select * from reviews, users, "userFollows" 
   where reviews.user_id="userFollows"."followeeId" 
   and "userFollows"."followerId"=${req.user.id}
-  and users.id=${req.user.id}
+  and users.id="userFollows"."followeeId"
   `
     )
     .then(followeesReviews => {
@@ -174,6 +174,8 @@ module.exports.displayPeopleUserFollowsReviews = (req, res, next) => {
                     // res.json(JSON.parse(data));
                     // review.dataValues.details = JSON.parse(data);
                     review.result = JSON.parse(data);
+                    console.log('review.result',review.result);
+                    review.restaurantImage = `https://maps.googleapis.com/maps/api/place/photo?maxwidth=300&photoreference=${review.result.result.photos[0].photo_reference}&key=${googlePlacesKey}`
                     resolve(review);
                   });
                 }

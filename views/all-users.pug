@@ -9,7 +9,7 @@ block content
       .review-card
         h4
           if(user.id)
-            a(href=(`/user/${user.id}`)) #{user.username} #{user.id}
+            a(href=(`/user/${user.id}`)) #{user.username} 
           else
             - alert("this user does not have any reviews");
           img(src="img/default_user_image.png")
