@@ -50,7 +50,8 @@ module.exports.getReviewsForWelcomePage = (req, res, next) => {
                   // console.log("JSON.parse(data)", JSON.parse(data));
                   // NEED 'dataValues' bc every object's properties is nested in dataValues originally. JSON.parse makes dataValues go away
                   review.dataValues.details = JSON.parse(data);
-                  review.dataValues.details.restaurantImage = `https://maps.googleapis.com/maps/api/place/photo?maxwidth=300&photoreference=${review.dataValues.details.result.photos[0].photo_reference}&key=${googlePlacesKey}`
+                  // review.dataValues.details.restaurantImage = `https://maps.googleapis.com/maps/api/place/photo?maxwidth=300&photoreference=${review.dataValues.details.result.photos[0].photo_reference}&key=${googlePlacesKey}` 
+                  review.dataValues.details.result ? review.dataValues.details.restaurantImage = `https://maps.googleapis.com/maps/api/place/photo?maxwidth=300&photoreference=${review.dataValues.details.result.photos[0].photo_reference}&key=${googlePlacesKey}` : review.dataValues.details.restaurantDefaultImage =("../client/img/no_image_available.jpg");
 
                   // review.dataValues.loggedInUserId = req.user.id;
                   resolve(review);

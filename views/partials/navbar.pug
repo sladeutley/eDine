@@ -1,30 +1,32 @@
 nav#nav-bar
+  h1 
+    a(class='goHomePage' href='/welcome') edine
+  ul
+    //- li
+    //-   a(class='goHomePage' href='/welcome') edine 
 
+    li
+      a(class='restaurantSearch' href='/restaurants') Search Restaurants
 
-  h1
-    a(class='goHomePage' href='/welcome') edine 
+    li 
+      a(class='write review' href='/restaurants') Write a Review
 
-  h3
-    a(class='restaurantSearch' href='/restaurants') Search Restaurants
+    li 
+      a(class='user search' href='/all-users') Find Food Buddies!
 
-  h3 
-    a(class='user search' href='/all-users') Find Food Buddies!
+    li 
+      a(class='my-food-buddies' href='/followees') See My Food Buddies!
+    
+    li 
+      a(class='followees' href='/followees-reviews') See Food Buddies' Reviews
+    
+    li
+    
+    li 
+      a(class='user-profile' href='/user') My Profile
 
-  h3 
-    a(class='write review' href='/restaurants') Write a Review
-
-  h3 
-    a(class='followees' href='/followees-reviews') See Reviews of People I follow
-  
-  h3 
-    a(class='my-food-buddies' href='/followees') See My Food Buddies!
-  
-  h3 
-    a(class='user-profile' href='/user') My Profile
-
-  h5
-    if session.passport
-      //- span logged in as: #{session.passport.user.username}
-      form(method="POST")
-        <br>
-          button(type="submit" formaction="/logout") logout
+    li
+      if session.passport
+        //- span logged in as: #{session.passport.user.username}
+        form(method="POST")
+          button.logoutBtn(type="submit" formaction="/logout") logout

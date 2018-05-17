@@ -5,14 +5,23 @@ block content
   h1 #{googleDetails.result.name}
 
   form#reviewNew(name="addReview" action=`/new-review/${id}` method="get")
-    button Add a Review
+    button.abuttons Add a Review
 
   h2 Reviews
-  each review in reviews
-    h4 #{review.review_description}
-    h6 by #{review.User.username}
+  .review-container
+    each review in reviews
+      .review-card
+        p
+          a(href=(`/user/${review.user_id}`)) User: #{review.User.username}
+          
+        img(src=`${googleDetails.result.restaurantImage}`)
+        <br>
+        p.
+          #{review.review_description}
 
-    form#userFollow(name="addReview" action=`/follow-user/${review.User.id}` method="post")
-          button follow
+        form#userFollow(name="addReview" action=`/follow-user/${review.User.id}` method="post")
+          button.abuttons follow this user
+
+
 
 

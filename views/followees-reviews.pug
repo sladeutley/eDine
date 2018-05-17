@@ -2,11 +2,27 @@ extends index.pug
 
 block content
 
-  each review in data
-    h1 #{review.result.name}   
-    p.
-      #{review.review_description}
-      by #{review.username}
+  //- each review in data
+  //-   h1 #{review.result.name}   
+  //-   p.
+  //-     #{review.review_description}
+  //-     by #{review.username}
 
-    form#userFollow(name="addReview" action=`/follow-user/${review.user_id}` method="post")
-          button follow
+  //-   form#userFollow(name="addReview" action=`/follow-user/${review.user_id}` method="post")
+  //-         button follow
+
+  h2 Food Buddies' Reviews
+  .review-container
+    each review in data
+      .review-card
+        h2
+          a(href=(`/reviews/${review.restaurantAPI_id}`)) #{review.result.result.name}   
+        img(src=`${review.restaurantImage}`)
+        
+        p.
+          #{review.review_description}
+          #{review.result.formatted_address} <br><br>
+          
+        p
+          a(href=(`/user/${review.user_id}`)) Written By: #{review.username}
+          

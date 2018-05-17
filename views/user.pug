@@ -3,11 +3,33 @@ extends welcome.pug
 block content
 
   h1 #{userName}'s Page
+
+  form#userFollow(name="addReview" action=`/follow-user/${userId}` method="post")
+    button.abuttons follow this user
+
+  h3 Restaurant Reviews
+  .review-container 
+    each review in data
+      .review-card 
+        h2 
+          a(href=(`/reviews/${review.restaurantAPI_id}`)) #{review.dataValues.details.result.name}   
+          if (review.dataValues.details.restaurantImage)
+            img(src=`${review.dataValues.details.restaurantImage}` alt="restaurant image")
+          else if (review.dataValues.details.restaurantImage === undefined)
+            img(src="img/no_image_available.jpg")
+        p.
+          #{review.review_description} <br><br>
+          #{review.dataValues.details.result.formatted_address} <br><br>
+        p
+          //- a(href=(`/user/${review.user_id}`)) written by: #{review.User.username}
+
+        //- form#userFollow(name="addReview" action=`/follow-user/${review.User.id}` method="post")
+        //-       button.buttons follow this user
   
-  each review in data
-    h1 #{review.dataValues.details.result.name}   
-    p.
-      #{review.review_description}
+  //- each review in data
+  //-   h1 #{review.dataValues.details.result.name}   
+  //-   p.
+  //-     #{review.review_description}
 
 
   //- h1 My Food Buddies Reviews

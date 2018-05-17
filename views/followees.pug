@@ -4,6 +4,13 @@ block content
 
   h1 My Food Buddies!
   
+  //- each user in followees
+  //-   h4
+  //-     a(href=(`/user/${user.followeeId}`)) #{user.username}
+
+  .review-container 
   each user in followees
-    h4
-      a(href=(`/user/${user.followeeId}`)) #{user.username}
+    .review-card
+      h4
+        a(href=(`/user/${user.id}`)) #{user.username} 
+        img(src="img/default_user_image.png")

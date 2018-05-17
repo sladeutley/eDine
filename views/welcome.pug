@@ -1,8 +1,10 @@
 extends index.pug
 
 block content
+  
   h1 Welcome to edine, #{session.passport.user.username}!
 
+  h3 Restaurant Reviews
   .review-container 
     each review in data
       .review-card 
@@ -10,8 +12,8 @@ block content
           a(href=(`/reviews/${review.restaurantAPI_id}`)) #{review.dataValues.details.result.name}   
           if (review.dataValues.details.restaurantImage)
             img(src=`${review.dataValues.details.restaurantImage}` alt="restaurant image")
-          else
-            img(src="../client/img/no_image_available.jpg")
+          else if (review.dataValues.details.restaurantImage === undefined)
+            img(src="img/no_image_available.jpg")
         p.
           #{review.review_description} <br><br>
           #{review.dataValues.details.result.formatted_address} <br><br>
@@ -19,7 +21,7 @@ block content
           a(href=(`/user/${review.user_id}`)) written by: #{review.User.username}
 
         form#userFollow(name="addReview" action=`/follow-user/${review.User.id}` method="post")
-              button follow this user
+              button.buttons follow this user
       
     //- each rev in review.dataValues.User.userFollowed
     //-   if ((rev.userFollow.followeeId === review.User.id) && (rev.userFollow.followerId === loggedInUserId))

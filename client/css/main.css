@@ -1,9 +1,52 @@
+body {
+  background-color: #fafafa; }
+
 #nav-bar {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
+  margin-left: -15px;
+  margin-top: -10px;
+  margin-right: -10px;
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  grid-template-rows: 120px;
   color: white;
   background-color: #7e354d; }
+
+#nav-bar h1 {
+  grid-column: 1;
+  font-family: "Futura";
+  font-size: 2rem;
+  text-shadow: 4px 2px #bada55, 5px 3px black;
+  margin-left: 1rem; }
+
+#nav-bar ul {
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+  padding: none;
+  grid-column: 2/7;
+  list-style-type: none; }
+
+#nav-bar li {
+  margin: 2px 8px;
+  border-radius: 50%; }
+
+#nav-bar a {
+  font-family: "Futura";
+  text-decoration: none;
+  color: whitesmoke; }
+
+.logoutBtn {
+  font-size: 18px;
+  grid-column: 7;
+  height: 50%;
+  width: 40px;
+  background: none;
+  font-family: "Futura";
+  text-decoration: none;
+  color: whitesmoke;
+  border: none;
+  cursor: pointer;
+  margin-right: -200px;
+  margin-top: -12px; }
 
 .review-container {
   display: flex;
@@ -11,8 +54,12 @@
   justify-content: space-evenly;
   padding: 5px; }
 
+a {
+  color: blue; }
+
 .review-card {
   cursor: pointer;
+  background-color: white;
   flex-basis: 30%;
   text-align: left;
   margin: 10px 0;
@@ -23,6 +70,47 @@
   -webkit-box-shadow: 2px 7px 20px -1px rgba(0, 0, 0, 0.61);
   -moz-box-shadow: 2px 7px 20px -1px rgba(0, 0, 0, 0.61);
   box-shadow: 2px 7px 20px -1px rgba(0, 0, 0, 0.61); }
+  .review-card a {
+    text-decoration: none; }
   .review-card img {
-    height: 175px;
+    height: 250px;
     width: 100%; }
+  .review-card .buttons {
+    background-color: #bada55;
+    cursor: pointer;
+    display: inline-block;
+    padding: 0.5em 0.9em;
+    top: 1.5%;
+    left: 75%;
+    border: 0.16em solid white;
+    border-radius: 0.3em;
+    box-sizing: border-box;
+    text-decoration: none;
+    font-family: "Roboto", sans-serif;
+    font-weight: 300;
+    color: #ffffff;
+    text-shadow: 0 0.04em 0.04em rgba(0, 0, 0, 0.85);
+    text-align: center;
+    transition: all 0.2s; }
+    .review-card .buttons:hover {
+      border-color: rebeccapurple; }
+
+.abuttons {
+  background-color: #bada55;
+  cursor: pointer;
+  display: inline-block;
+  padding: 0.5em 0.9em;
+  top: 1.5%;
+  left: 75%;
+  border: 0.16em solid white;
+  border-radius: 0.3em;
+  box-sizing: border-box;
+  text-decoration: none;
+  font-family: "Roboto", sans-serif;
+  font-weight: 300;
+  color: #ffffff;
+  text-shadow: 0 0.04em 0.04em rgba(0, 0, 0, 0.85);
+  text-align: center;
+  transition: all 0.2s; }
+  .abuttons:hover {
+    border-color: rebeccapurple; }

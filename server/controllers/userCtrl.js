@@ -31,14 +31,18 @@ module.exports.displayUsersPage = (req, res, next) => {
     where: { id: req.params.id },
     include: [
       {
-        model: Review,
-        where: {
-          user_id: req.params.id
-        }
+        model: Review
+        // where: {
+        //   user_id: req.params.id
+        // }
       }
     ]
   }).then(userPage => {
     // res.json(userPage);
+    console.log('userPage',userPage);
+    // if (userPage[0]) {
+      
+    // }
     let userName = userPage[0].username;
     // console.log('userName',userName);
     // res.json(userPage[0]);
@@ -71,7 +75,7 @@ module.exports.displayUsersPage = (req, res, next) => {
                   // console.log("JSON.parse(data)", JSON.parse(data));
                   // NEED 'dataValues' bc every object's properties is nested in dataValues originally. JSON.parse makes dataValues go away
                   review.dataValues.details = JSON.parse(data);
-
+                  review.dataValues.details.result ? review.dataValues.details.restaurantImage = `https://maps.googleapis.com/maps/api/place/photo?maxwidth=300&photoreference=${review.dataValues.details.result.photos[0].photo_reference}&key=${googlePlacesKey}` : review.dataValues.details.restaurantDefaultImage =("../client/img/no_image_available.jpg");                  
                   // review.dataValues.loggedInUserId = req.user.id;
                   resolve(review);
                 });
@@ -88,13 +92,16 @@ module.exports.displayUsersPage = (req, res, next) => {
         // data.dataValues.loggedInUserId = req.user.id;
         console.log("data", data);
         console.log("userName", userName);
+        let userId = req.params.id;
+        console.log('userId',userId);
         // res.json(data);
         // console.log("req.user.id", req.user.id);
         // res.render("welcome", { data } );
         res.render("user", {
           data: data,
           // loggedInUserId: req.user.id,
-          userName: userName
+          userName: userName,
+          userId: userId
         });
       })
       .catch(err => {
@@ -140,7 +147,7 @@ module.exports.displayPeopleUserFollowsReviews = (req, res, next) => {
   select * from reviews, users, "userFollows" 
   where reviews.user_id="userFollows"."followeeId" 
   and "userFollows"."followerId"=${req.user.id}
-  and users.id=${req.user.id}
+  and users.id="userFollows"."followeeId"
   `
     )
     .then(followeesReviews => {
@@ -167,6 +174,8 @@ module.exports.displayPeopleUserFollowsReviews = (req, res, next) => {
                     // res.json(JSON.parse(data));
                     // review.dataValues.details = JSON.parse(data);
                     review.result = JSON.parse(data);
+                    console.log('review.result',review.result);
+                    review.restaurantImage = `https://maps.googleapis.com/maps/api/place/photo?maxwidth=300&photoreference=${review.result.result.photos[0].photo_reference}&key=${googlePlacesKey}`
                     resolve(review);
                   });
                 }
