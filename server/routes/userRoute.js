@@ -14,7 +14,7 @@ const {
 
 router.post(`/follow-user/:id`, followUser);
 router.get("/user", isLoggedIn, displayLoggedInUsersProfilePage);
-router.get("/user/:id", displayUsersPage);
+router.get("/user/:id", isLoggedIn, displayUsersPage, followUser);
 router.get("/followees", isLoggedIn, displayPeopleUserFollows);
 router.get("/followees-reviews", isLoggedIn, displayPeopleUserFollowsReviews);
 router.get("/all-users", displayAllUsers);

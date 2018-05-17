@@ -3,6 +3,7 @@ extends index.pug
 block content
   h1 Welcome to edine, #{session.passport.user.username}!
 
+  h3 Restaurant Reviews
   .review-container 
     each review in data
       .review-card 

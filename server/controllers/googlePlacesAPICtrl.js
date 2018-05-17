@@ -53,7 +53,11 @@ module.exports.getRestaurantDetails = (req, res, next) => {
 
         resp.on("end", () => {
           
+          // res.json(JSON.parse(data));
           req.details = JSON.parse(data);
+          // res.json(req.details);
+          console.log('req.details',req.details);
+          req.details.result.restaurantImage = `https://maps.googleapis.com/maps/api/place/photo?maxwidth=300&photoreference=${req.details.result.photos[0].photo_reference}&key=${googlePlacesKey}`
           // need next bc can only render once
           next();
         });

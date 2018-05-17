@@ -8,7 +8,10 @@ block content
     each user in users
       .review-card
         h4
-          a(href=(`/user/${user.id}`)) #{user.username}
+          if(user.id)
+            a(href=(`/user/${user.id}`)) #{user.username} #{user.id}
+          else
+            - alert("this user does not have any reviews");
           img(src="img/default_user_image.png")
 
     //- form#userFollow(name="addReview" action=`/follow-user/${review.user_id}` method="post")
